@@ -1,6 +1,6 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
-public class Tests {
+package ch5;
+
+public class Statics {
     public static void main(String[] args) {
 //        System.out.println(delimitedString(args[0], args[1].charAt(0), args[2].toCharArray()[0]));
 //        System.out.println(encode("äzXyä"));
