@@ -1,3 +1,5 @@
+package ch5;
+
 public class IntegerStack implements Cloneable {
     private Integer[] stack;
     private int topIndex;

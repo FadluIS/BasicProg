@@ -1,47 +1,57 @@
 package ch5;
 
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Vector;
+// TODO: Extract tests into separate file.
+/*
+USE THIS FORMAT
+java ch6.Statics dowabdsjal o a => owa // Result is wrong! Should be: owabdsja
+java ch6.Statics dowabddowabdsjal o a => owa
+ */
+/*
+Implement the method
+public static String delimitedString( String s, char start. char end),
+which returns the substring of S starting with the character start and ending with the character end.
+ */
 
 public class Statics {
     public static void main(String[] args) {
 //        System.out.println(delimitedString(args[0], args[1].charAt(0), args[2].toCharArray()[0]));
-//        System.out.println(encode("äzXyä"));
+        System.out.println(encode(args[0])); // äzXyä => äzxyä => aezxyae => 1526242515
 
         // Test extract
-        String delimiter = "|";
-        String original = "Hi! We'll be <br> using| pipes| as <br> our| delimiter.";
-        String[] expected = {"Hi! We'll be <br> using", " pipes", " as <br> our", " delimiter."};
-        String[] result = extract(original, delimiter);
-
-        System.out.format("Original string: %s%n", original);
-        System.out.format("Expected string: %s%n", Arrays.toString(expected));
-        System.out.format("Result string: %s%n", Arrays.toString(result));
-
-        System.out.println("\n\n--------------\n\n");
-
-        // Test extract long
-        String delimiterLong = "<br>";
-        String originalLong = "Hi! We'll be<br><br> <br> using| breaks| as <br> our| delimiter.<br><br>";
-        String[] expectedLong = {"Hi! We'll be", " ", " using| breaks| as ", " our| delimiter."};
-        String[] resultLong = extract(originalLong, delimiterLong);
-
-        System.out.format("Original string: %s%n", originalLong);
-        System.out.format("Expected string: %s%n", Arrays.toString(expectedLong));
-        System.out.format("Result string: %s%n", Arrays.toString(resultLong));
-
-        System.out.println("\n\n--------------\n\n");
-
-        // Test extract long variant
-        String delimiterLongVar = "<br>";
-        String originalLongVar = "Hi!Hi!<br>    Hi!<br>   Hi!<br> We'll be    <br><br> <br> <br>We'll be";
-        String[] expectedLongVar = {"Hi!Hi!: 1", "Hi!: 2", "We'll be: 2"};
-        String[] resultLongVar = extractVariant(originalLongVar, delimiterLongVar);
-
-        System.out.format("Original string: %s%n", originalLongVar);
-        System.out.format("Expected string: %s%n", Arrays.toString(expectedLongVar));
-        System.out.format("Result string: %s%n", Arrays.toString(resultLongVar));
+//        String delimiter = "|";
+//        String original = "Hi! We'll be <br> using| pipes| as <br> our| delimiter.";
+//        String[] expected = {"Hi! We'll be <br> using", " pipes", " as <br> our", " delimiter."};
+//        String[] result = extract(original, delimiter);
+//
+//        System.out.format("Original string: %s%n", original);
+//        System.out.format("Expected string: %s%n", Arrays.toString(expected));
+//        System.out.format("Result string: %s%n", Arrays.toString(result));
+//
+//        System.out.println("\n\n--------------\n\n");
+//
+//        // Test extract long
+//        String delimiterLong = "<br>";
+//        String originalLong = "Hi! We'll be<br><br> <br> using| breaks| as <br> our| delimiter.<br><br>";
+//        String[] expectedLong = {"Hi! We'll be", " ", " using| breaks| as ", " our| delimiter."};
+//        String[] resultLong = extract(originalLong, delimiterLong);
+//
+//        System.out.format("Original string: %s%n", originalLong);
+//        System.out.format("Expected string: %s%n", Arrays.toString(expectedLong));
+//        System.out.format("Result string: %s%n", Arrays.toString(resultLong));
+//
+//        System.out.println("\n\n--------------\n\n");
+//
+//        // Test extract long variant
+//        String delimiterLongVar = "<br>";
+//        String originalLongVar = "Hi!Hi!<br>    Hi!<br>   Hi!<br> We'll be    <br><br> <br> <br>We'll be";
+//        String[] expectedLongVar = {"Hi!Hi!: 1", "Hi!: 2", "We'll be: 2"};
+//        String[] resultLongVar = extractVariant(originalLongVar, delimiterLongVar);
+//
+//        System.out.format("Original string: %s%n", originalLongVar);
+//        System.out.format("Expected string: %s%n", Arrays.toString(expectedLongVar));
+//        System.out.format("Result string: %s%n", Arrays.toString(resultLongVar));
 
     }
 
@@ -74,6 +84,13 @@ public class Statics {
         return null;
     }
 
+
+    /*
+    public static String encode(String text),
+    which encodes an arbitrary text by first converting all upper case letters into lower case letters and then replacing each letter with its position number in the alphabet.
+    Umlauts such as .ä' and .B' are to be treated as "ae" and ~ss" respectively.
+    All characters that are not letters should be ignored.
+     */
     /**
      * Takes {@code text} into lowercase and replaces each letter with its
      * numerical position in the alphabet.
@@ -83,6 +100,8 @@ public class Statics {
      * @param text
      * @return {@code String} encoded text
      */
+    // java ch6.Statics "äzXyä" => 1526242515
+    // java ch6.Statics "äzbcä" => 15262315
     public static String encode(String text) {
         // Take text into lowercase
         text = text.toLowerCase();
@@ -93,14 +112,17 @@ public class Statics {
         text = text.replace("ü", "ue");
         text = text.replace("ö", "oe");
 
-        // Iterate over each letter replacing it with equivalent numerical
-        // position in the alphabet
+        // Iterate over each letter replacing it with equivalent numerical position in the alphabet
         String result = "";
         for (int i = 0; i < text.length(); i++) {
-            result += text.charAt(i) - 'a' + 1;
+            result += numericValueOf(text.charAt(i));
         }
 
         return result;
+    }
+
+    public static int numericValueOf(char currentChar) {
+        return currentChar - 'a' + 1;
     }
 
     public static String[] extract(String text, String delim) {
@@ -203,3 +225,4 @@ public class Statics {
         return buffer;
     }
 }
+
