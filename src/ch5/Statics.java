@@ -1,5 +1,7 @@
 package ch5;
 
+import java.util.Vector;
+
 public class Statics {
     public static void main(String[] args) {
 //        System.out.println(delimitedString(args[0], args[1].charAt(0), args[2].toCharArray()[0]));
@@ -62,5 +64,17 @@ public class Statics {
         }
 
         return result;
+    }
+
+    public static String[] extract(String text, String delim) {
+        Vector<String> buffer = new Vector<>();
+        String word = "";
+
+        // Using two pointers to navigate words and delimiters, iterate over entire string
+        for (int i = 0; i < text.length(); i++) {
+
+        }
+
+        return null;
     }
 }

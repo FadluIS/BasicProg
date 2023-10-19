@@ -1,21 +1,36 @@
 public class IntegerStack implements Cloneable {
-    private Integer[] _stack;
-    private int _topIndex;
+    private Integer[] stack;
+    private int topIndex;
 
     /**
      * For testing purposes
      */
     public static void main(String[] args) throws Exception {
-        IntegerStack stack = new IntegerStack(4);
-        stack.push(3);
-        stack.push(2);
-        stack.push(364);
-        stack.push(2);
-//        stack.push(364);
 
-        System.out.println(stack);
+        final int size = 9;
+        System.out.println(String.format("Initializing Stack with size %d ", size));
+        IntegerStack stack = new IntegerStack(size);
 
-        System.out.println("Removed " + stack.pop() + " from stack.");
+        String expectedStack = "[ ";
+        int expectedLastMember = 0;
+        for (int i = 0; i < size; i++) {
+            int member = (int) Math.floor(Math.random() * 100 + 1);
+            System.out.println("Pushing " + member);
+            stack.push(member);
+
+            expectedStack += ((i == 0) ? "":", ") + member;
+
+            if (i == size - 1) expectedLastMember = member;
+        }
+        expectedStack += " ]";
+
+        System.out.println("Expected Stack: " + expectedStack);
+        System.out.println("Result Stack: " + stack);
+
+        System.out.println("\nPopping last element from stack.");
+        int lastMember = stack.pop();
+        System.out.println("Expected: " + expectedLastMember);
+        System.out.println("Result: " + lastMember);
         System.out.println(stack);
 
         System.out.println("\nCloning:");
@@ -33,8 +48,8 @@ public class IntegerStack implements Cloneable {
      * @param size of stack
      */
     public IntegerStack(int size) {
-        this._stack = new Integer[size];
-        this._topIndex = -1;
+        this.stack = new Integer[size];
+        this.topIndex = -1;
     }
 
     /**
@@ -42,7 +57,7 @@ public class IntegerStack implements Cloneable {
      *
      */
     public int getLength() {
-        return this._stack.length;
+        return this.stack.length;
     }
 
     /**
@@ -51,7 +66,7 @@ public class IntegerStack implements Cloneable {
      * @return
      */
     public int getSize() {
-        return this._topIndex + 1;
+        return this.topIndex + 1;
     }
 
     /**
@@ -67,7 +82,7 @@ public class IntegerStack implements Cloneable {
         }
 
         // Increment index and push to top of stack
-        this._stack[++this._topIndex] = value;
+        this.stack[++this.topIndex] = value;
     }
 
     /**
@@ -83,15 +98,15 @@ public class IntegerStack implements Cloneable {
         }
 
         // Return top of stack and decrement index
-        return this._stack[this._topIndex--];
+        return this.stack[this.topIndex--];
     }
 
     public boolean isFull() {
-        return (this._topIndex == this._stack.length - 1);
+        return (this.topIndex == this.stack.length - 1);
     }
 
     public boolean isEmpty() {
-        return (this._topIndex == -1);
+        return (this.topIndex == -1);
     }
 
     @Override
@@ -99,9 +114,9 @@ public class IntegerStack implements Cloneable {
         IntegerStack copy = new IntegerStack(this.getLength());
 
         // Iterate through stack from bottom to top making clones of all items
-        for (int i = 0; i <= this._topIndex; i++) {
+        for (int i = 0; i <= this.topIndex; i++) {
             try {
-                copy.push(this._stack[i]);
+                copy.push(this.stack[i]);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 break;
@@ -115,9 +130,9 @@ public class IntegerStack implements Cloneable {
     public String toString() {
         String result = "[ ";
 
-        if (!this.isEmpty()) result += this._stack[0];
-        for (int i = 1; i <= this._topIndex; i++) {
-            result += ", " + this._stack[i];
+        if (!this.isEmpty()) result += this.stack[0];
+        for (int i = 1; i <= this.topIndex; i++) {
+            result += ", " + this.stack[i];
         }
 
         return result + " ]";
