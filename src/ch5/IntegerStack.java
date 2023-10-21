@@ -4,11 +4,15 @@ public class IntegerStack implements Cloneable {
     private Integer[] stack;
     private int topIndex;
 
+
     /**
      * For testing purposes
      */
+    //ToDo: Extract test logic from IntegerStack class! I want to place the testlogic into a separate file and instantiate the IntegerStack class
+    // push some values into it and pop some values and then display the content...
     public static void main(String[] args) throws Exception {
 
+        //ToDo: change it to use args from main method. I do not want size to be static! (line 14)
         final int size = 9;
         System.out.println(String.format("Initializing Stack with size %d ", size));
         IntegerStack stack = new IntegerStack(size);

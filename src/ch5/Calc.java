@@ -19,7 +19,7 @@ public class Calc {
         // Ensure proper number of inputs
         if (args.length != 3) {
             System.err.println("Usage: java Calc num1 [+, -, x, /] num2");
-            return;
+            return; // ToDo: what is return? You have to throw an exception to show that something was wrong.
         }
 
         // Parse input

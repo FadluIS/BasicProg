@@ -16,7 +16,7 @@ public class CurrentDate {
     @Override
     public String toString() {
         SimpleDateFormat dateForm = new SimpleDateFormat("EEEE. dd.MM.YYYY");
-        Date current = new Date();
+        Date current = new Date(); //ToDo: use more modern API's like LocalDateTime or LocalDate
         return dateForm.format(current);
     }
 }
