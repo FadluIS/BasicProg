@@ -1,7 +1,7 @@
 package ch5;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Return current date in format EEEE. dd.mm.yyyy
@@ -15,8 +15,8 @@ public class CurrentDate {
 
     @Override
     public String toString() {
-        SimpleDateFormat dateForm = new SimpleDateFormat("EEEE. dd.MM.YYYY");
-        Date current = new Date(); //ToDo: use more modern API's like LocalDateTime or LocalDate
-        return dateForm.format(current);
+        var dateForm = DateTimeFormatter.ofPattern("EEEE. dd.MM.YYYY");
+        var current = LocalDate.now();
+        return current.format(dateForm);
     }
 }

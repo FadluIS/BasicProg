@@ -18,8 +18,7 @@ public class Calc {
     public static void main(String[] args) {
         // Ensure proper number of inputs
         if (args.length != 3) {
-            System.err.println("Usage: java Calc num1 [+, -, x, /] num2");
-            return; // ToDo: what is return? You have to throw an exception to show that something was wrong.
+            throw new RuntimeException("Incorrect use of application.\nUsage: java Calc num1 [+, -, x, /] num2");
         }
 
         // Parse input

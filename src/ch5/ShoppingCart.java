@@ -1,4 +1,4 @@
-package ch5; //ToDo: not a proper package
+package ch5;
 
 import java.util.Vector;
 
@@ -6,16 +6,16 @@ public class ShoppingCart {
     private Vector<Article> cart;
 
     public static void main(String[] args) {
-        ShoppingCart test = new ShoppingCart(); //ToDo: variable name is not good
+        var testingCart = new ShoppingCart();
 
-        test.add();
-        test.add(new Article(1, 15, 2));
-        test.add(new Article(2, 2.1, 10));
-        test.add(new Article(4, 2, 2));
-        test.add(new Article(2, 2.1, 10));
+//        test.add();
+        testingCart.add(new Article(1, 15, 2));
+        testingCart.add(new Article(2, 2.1, 10));
+        testingCart.add(new Article(4, 2, 2));
+        testingCart.add(new Article(2, 2.1, 10));
 
         System.out.println("Expected total: " + (30 + 21 + 4 + 21.0));
-        System.out.println("Actual total: " + test.orderValue());
+        System.out.println("Actual total: " + testingCart.orderValue());
     }
     public ShoppingCart() {
         this.cart  = new Vector<Article>(10);
