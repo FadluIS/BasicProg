@@ -3,25 +3,26 @@ package ch5;
 import java.util.Vector;
 
 public class ShoppingCart {
-    Vector<Article> cart = new Vector<>();
+    private Vector<Article> cart;
 
     public static void main(String[] args) {
-        ShoppingCart test = new ShoppingCart();
+        var testingCart = new ShoppingCart();
 
-        test.add(new Article(1, 15, 2));
-        test.add(new Article(2, 2.1, 10));
-        test.add(new Article(4, 2, 2));
-        test.add(new Article(2, 2.1, 10));
+//        test.add();
+        testingCart.add(new Article(1, 15, 2));
+        testingCart.add(new Article(2, 2.1, 10));
+        testingCart.add(new Article(4, 2, 2));
+        testingCart.add(new Article(2, 2.1, 10));
 
         System.out.println("Expected total: " + (30 + 21 + 4 + 21.0));
-        System.out.println("Actual total: " + test.orderValue());
+        System.out.println("Actual total: " + testingCart.orderValue());
     }
-
     public ShoppingCart() {
+        this.cart  = new Vector<Article>(10);
     }
 
     public void add(Article article) {
-        cart.add(article);
+        this.cart.add(article);
     }
 
     public double orderValue() {
