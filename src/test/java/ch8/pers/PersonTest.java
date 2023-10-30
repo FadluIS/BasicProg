@@ -1,8 +1,11 @@
-package ch8;
+package ch8.pers;
 
-import ch8.pers.Person;
 import ch8.pers.prof.Professor;
 import ch8.studi.Student;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.Scanner;
 
 /*
 Which directories do you need to set up?
@@ -42,5 +45,34 @@ public class PersonTest {
         System.out.println ("output Professor");
         testProf.print();
         System.out.println();
+    }
+
+    @Test()
+    void testGetName() {
+        System.out.println("Testing testGetName");
+        Person testPerson = new Person();
+        testPerson.setSurname("Surname");
+        testPerson.setForename("Forename");
+        String resultName = testPerson.getName();
+
+        Assertions.assertThat(resultName).isEqualTo("Forename Surname");
+    }
+
+    @Test
+    void testGetNameScanner() {
+        Person testPerson = new Person();
+
+        Scanner input = new Scanner(System.in);
+        input.useDelimiter(" ");
+
+        System.out.print("Type in the surname: ");
+        String surname = input.nextLine();
+        testPerson.setSurname(surname);
+
+        System.out.print("Type in the forename: ");
+        String forename = input.nextLine();
+        testPerson.setForename(forename);
+
+        Assertions.assertThat(testPerson.getName()).isEqualTo(String.format("%s %s", forename, surname));
     }
 }
